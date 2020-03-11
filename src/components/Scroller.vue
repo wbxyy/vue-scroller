@@ -348,10 +348,14 @@
           // 在 keep alive 中 deactivated 的组件长宽变为 0 
           if (this.content.offsetHeight > 0 && 
             top + 60 > this.content.offsetHeight - this.container.clientHeight) {
-            if (this.loadingState) return
-            this.loadingState = 1
-            this.showLoading = true
-            this.onInfinite(this.finishInfinite)
+            let flag = this.content.offsetHeight && this.container.clientHeight // 宽高不为0
+            flag = flag && (top + 60 > this.content.offsetHeight - this.container.clientHeight )
+            if (flag) {
+              if (this.loadingState) return
+              this.loadingState = 1
+              this.showLoading = true
+              this.onInfinite(this.finishInfinite)
+            }
           }
         }, 10);
       }
@@ -379,9 +383,13 @@
       this.resizeTimer = setInterval(() => {
         let {width, height} = contentSize()
         if (width !== content_width || height !== content_height) {
-          content_width = width
-          content_height = height
-          this.resize()
+          let flag = width !== content_width || height !== content_height
+          flag = flag && width && height // 宽高不为0
+          if (flag) {
+            content_width = width
+            content_height = height
+            this.resize()
+          }
         }
       }, 10);
     },
