@@ -348,7 +348,7 @@
           // 在 keep alive 中 deactivated 的组件长宽变为 0 
           if (this.content.offsetHeight > 0 && 
             top + 60 > this.content.offsetHeight - this.container.clientHeight) {
-            let flag = this.content.offsetHeight && this.container.clientHeight // 宽高不为0,我是小苏苏
+            let flag = this.content.offsetHeight && this.container.clientHeight // 宽高不为0,我是小苏苏，测试npm
             flag = flag && (top + 60 > this.content.offsetHeight - this.container.clientHeight )
             if (flag) {
               if (this.loadingState) return
